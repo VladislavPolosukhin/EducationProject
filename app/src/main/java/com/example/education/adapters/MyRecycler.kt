@@ -12,6 +12,9 @@ class MyRecycler(
     private val dataList: List<String>
 ) : RecyclerView.Adapter<MyRecycler.MyHolder>() {
 
+    inner class MyHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var textView: TextView = itemView.findViewById(R.id.recyclerTV)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
         val inflater: LayoutInflater = LayoutInflater.from(App.instance.applicationContext)
@@ -24,10 +27,6 @@ class MyRecycler(
     }
 
     override fun getItemCount(): Int = dataList.size
-
-    inner class MyHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var textView: TextView = itemView.findViewById(R.id.recyclerTV)
-    }
 
 }
 

@@ -4,6 +4,7 @@ import android.app.Application
 import com.example.education.database.DbHelper
 
 class App : Application() {
+
     override fun onCreate() {
         super.onCreate()
         instance = this
@@ -11,7 +12,7 @@ class App : Application() {
     }
 
 
-    companion object{
-       lateinit var instance: App
+    companion object {
+        lateinit var instance: App
     }
 }

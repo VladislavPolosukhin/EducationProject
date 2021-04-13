@@ -6,7 +6,7 @@
 
         <variable
             name="viewModelRF"
-            type="com.example.education.recycler.RecyclerViewModel" />
+            type="com.example.education.mvvm.RecyclerViewModel" />
     </data>
 
     <LinearLayout

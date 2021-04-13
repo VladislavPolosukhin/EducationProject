@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/recyclerFragment"
-        android:name="com.example.education.recycler.RecyclerFragment"
+        android:name="com.example.education.mvvm.RecyclerFragment"
         android:label="RecyclerFragment" />
     <fragment
         android:id="@+id/viewPagerFragment"

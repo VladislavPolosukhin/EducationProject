@@ -3,20 +3,26 @@ package com.example.education.database
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import com.example.education.baseModels.App
+import com.example.education.const.DbTaskConst
 
-class DbHelper(private val context: Context, val tableName: String = "my_table", val version: Int = 1) :
-    SQLiteOpenHelper(context, tableName, null, version) {
+class DbHelper(
+    context: Context,
+) : SQLiteOpenHelper(context, "my_table", null, 1) {
+
+    private val createTask = """|CREATE TABLE ${DbTaskConst.TABLE} (
+        |   ${DbTaskConst.ID} INTEGER PRIMARY KEY AUTOINCREMENT,
+        |   ${DbTaskConst.POSITION_WORK} INTEGER DEFAULT 0,
+        |   ${DbTaskConst.POSITION_COMPLETED} INTEGER DEFAULT 0,
+        |   ${DbTaskConst.TITLE} TEXT DEFAULT 'N/A',
+        |   ${DbTaskConst.INFO} TEXT DEFAULT '',
+        |   ${DbTaskConst.IS_COMPLETED} INTEGER DEFAULT 0,
+        |   ${DbTaskConst.ALARM_AT} INTEGER
+        |);
+    """.trimMargin()
 
 
     override fun onCreate(db: SQLiteDatabase?) {
-        db?.execSQL("CREATE TABLE task_entity (_id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                " position_work INTEGER DEFAULT 0," +
-                "position_completed INTEGER DEFAULT 0," +
-                "title TEXT DEFAULT 'N/A'," +
-                "info TEXT DEFAULT ''," +
-                "is_completed INTEGER DEFAULT 0," +
-                "alarm_at INTEGER)")
+        db?.execSQL(createTask)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {

@@ -1,4 +1,4 @@
-package com.example.education.recycler
+package com.example.education.mvvm
 
 import com.example.education.baseModels.BaseViewModel
 import com.example.education.adapters.MyRecycler

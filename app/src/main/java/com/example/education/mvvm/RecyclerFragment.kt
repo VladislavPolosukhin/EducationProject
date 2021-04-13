@@ -1,4 +1,4 @@
-package com.example.education.recycler
+package com.example.education.mvvm
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,7 +17,7 @@ class RecyclerFragment : BaseFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         val binding: RecyclerFragmentLayoutBinding =
             DataBindingUtil.inflate(inflater, R.layout.recycler_fragment_layout, container, false)

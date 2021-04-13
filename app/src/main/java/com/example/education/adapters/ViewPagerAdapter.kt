@@ -1,31 +1,40 @@
 package com.example.education.adapters
 
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
-import com.example.education.R
-import kotlinx.android.synthetic.main.view_pager2_items_layout.view.*
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.education.mvvm.task.TaskFragment
 
 
-class ViewPagerAdapter : RecyclerView.Adapter<PagerVH>() {
+class ViewPagerAdapter(
+    fm: FragmentManager,
+    lifecycle: Lifecycle
+) : FragmentStateAdapter(fm, lifecycle) {
 
-    private val colors = intArrayOf(
-        android.R.color.black,
-        android.R.color.holo_red_light,
-        android.R.color.holo_blue_dark,
-        android.R.color.holo_purple
+    private val pages = listOf(
+        TaskFragment(),
+        TaskFragment()
     )
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PagerVH =
-        PagerVH(LayoutInflater.from(parent.context).inflate(R.layout.view_pager2_items_layout, parent, false))
+    override fun getItemCount(): Int = 2
+    override fun createFragment(position: Int): Fragment = pages[position]
+
+
+    /*override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PagerVH =
+        PagerVH(
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.view_pager2_items_layout, parent, false)
+        )
 
     override fun getItemCount(): Int = colors.size
 
     override fun onBindViewHolder(holder: PagerVH, position: Int) = holder.itemView.run {
         tvTitle.text = "item $position"
         container.setBackgroundResource(colors[position])
-    }
+    }*/
 }
 
 class PagerVH(itemView: View) : RecyclerView.ViewHolder(itemView)

@@ -1,6 +1,7 @@
 package com.example.education.mvvm
 
 import android.view.View
+import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.findNavController
 import com.example.education.baseModels.BaseViewModel
@@ -12,7 +13,8 @@ class MainViewModel : BaseViewModel() {
     val editTextPasswordHint = "Please put your password"
     val buttonLoginName = "Log In"
     val buttonPager2Name = "To Pager2"
-    var textData = MutableLiveData("")
+    //var textData = MutableLiveData("")
+    var textData = ObservableField("")
 
     fun logIn (view : View){
         //FIXME правильно ли выполнен переход?
