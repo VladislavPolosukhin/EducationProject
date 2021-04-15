@@ -15,21 +15,18 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import java.util.*
 
-// TODO ДЗ написать как можно больше вариаций тестов для метода getTasksByPage
-
 @RunWith(RobolectricTestRunner::class)
 @Config(
     application = App::class,
     manifest = Config.NONE,
     sdk = [Build.VERSION_CODES.N_MR1]
 )
-
-class GetTasksByPageTest {
+class DeleteTaskByIdTest {
 
     private val listTasks = listOf<TaskEntity>(
         TaskEntity
             (
-            0, 1, 0,
+            7, 1, 0,
             "worker", "cool_guy", true, Date()
         ), TaskEntity
             (
@@ -38,22 +35,19 @@ class GetTasksByPageTest {
         )
     )
 
+
     private lateinit var taskRepository: TaskRepository
 
     @Before
     fun before() {
         val dbHelper = DbHelper(ApplicationProvider.getApplicationContext())
         taskRepository = TaskRepositoryImpl(dbHelper.writableDatabase)
-        for (item in listTasks) {
-            taskRepository.insertTask(item)
-        }
+        listTasks.forEach { taskRepository.insertTask(it) }
     }
 
     @Test
-    fun `when insert check quantity`() {
-        taskRepository.deleteTaskById((listTasks[1].id).toInt())
-        val list = taskRepository.getTasksByPage(0, 10)
-        Assert.assertNotEquals(listTasks.size,list.size)
+    fun `check delete`() {
+    val id = taskRepository.deleteTaskById((listTasks[1].id).toInt())
+        Assert.assertEquals(id,1)
     }
-
 }

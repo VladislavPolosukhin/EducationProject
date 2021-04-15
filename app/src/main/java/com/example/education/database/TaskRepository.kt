@@ -10,6 +10,8 @@ interface TaskRepository {
 
     fun insertTask(task: TaskEntity): Long
     fun getTasksByPage(fromPosition: Int, count: Int): List<TaskEntity>
+    fun deleteTaskById(id: Int): Int
+    fun updateTask(task: TaskEntity): Int
     // TODO добавить методов
 
 }
@@ -59,4 +61,30 @@ class TaskRepositoryImpl(
         return list
     }
 
+    override fun deleteTaskById(id: Int): Int {
+        return db.delete(DbTaskConst.TABLE, "${DbTaskConst.ID} = ? ", arrayOf(id.toString()))
+    }
+
+    override fun updateTask(task: TaskEntity): Int {
+        val contentValues = ContentValues()
+        contentValues.apply {
+            put(DbTaskConst.POSITION_WORK, task.positionWork)
+            put(DbTaskConst.POSITION_COMPLETED, task.positionCompleted)
+            put(DbTaskConst.TITLE, task.title)
+            put(DbTaskConst.INFO, task.info)
+            put(DbTaskConst.IS_COMPLETED, task.isCompleted)
+            put(DbTaskConst.ALARM_AT, task.alarmAt.time)
+        }
+
+        return db.update(
+            DbTaskConst.TABLE,
+            contentValues,
+            "${DbTaskConst.ID} = ? ",
+            arrayOf(task.id.toString())
+        )
+
+    }
+
+
 }
+
