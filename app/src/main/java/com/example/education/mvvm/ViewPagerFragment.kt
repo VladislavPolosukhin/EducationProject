@@ -1,4 +1,4 @@
-package com.example.education.viewPager
+package com.example.education.mvvm
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,8 +14,8 @@ import com.example.education.databinding.ViewPager2FragmentLayoutBinding
 class ViewPagerFragment : BaseFragment() {
 
     private val pagerAdapter by lazy { ViewPagerAdapter(childFragmentManager, lifecycle) }
-    private val viewModel: ViewPagerModel by lazy {
-        ViewModelProvider(this).get(ViewPagerModel::class.java)
+    private val viewModel: ViewPagerViewModel by lazy {
+        ViewModelProvider(this).get(ViewPagerViewModel::class.java)
     }
 
     override fun onCreateView(

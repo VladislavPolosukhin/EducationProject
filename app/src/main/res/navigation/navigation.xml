@@ -20,6 +20,6 @@
         android:label="RecyclerFragment" />
     <fragment
         android:id="@+id/viewPagerFragment"
-        android:name="com.example.education.viewPager.ViewPagerFragment"
+        android:name="com.example.education.mvvm.ViewPagerFragment"
         android:label="ViewPagerFragment" />
 </navigation>

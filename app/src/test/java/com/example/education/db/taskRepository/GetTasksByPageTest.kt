@@ -15,7 +15,7 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import java.util.*
 
-// TODO ДЗ написать как можно больше вариаций тестов для метода getTasksByPage
+// TODO ДЗ сравнить сами объекты (из бд с объектами из listTasks)
 
 @RunWith(RobolectricTestRunner::class)
 @Config(
@@ -51,7 +51,7 @@ class GetTasksByPageTest {
 
     @Test
     fun `when insert check quantity`() {
-        taskRepository.deleteTaskById((listTasks[1].id).toInt())
+        taskRepository.deleteTaskById((listTasks[1].id))
         val list = taskRepository.getTasksByPage(0, 10)
         Assert.assertNotEquals(listTasks.size,list.size)
     }

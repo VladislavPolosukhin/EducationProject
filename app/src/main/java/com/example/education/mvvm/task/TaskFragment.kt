@@ -7,9 +7,17 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.example.education.R
 import com.example.education.baseModels.BaseFragment
+import com.example.education.data.TaskEntity
+import com.example.education.database.DbHelper
+import com.example.education.database.TaskRepository
+import com.example.education.database.TaskRepositoryImpl
 import com.example.education.databinding.FragmentTaskBinding
+import kotlinx.coroutines.*
+import kotlin.coroutines.CoroutineContext
 
-class TaskFragment : BaseFragment() {
+class TaskFragment : BaseFragment(), CoroutineScope {
+
+    override val coroutineContext: CoroutineContext = Dispatchers.Main
 
     private lateinit var binding: FragmentTaskBinding
 
@@ -30,8 +38,22 @@ class TaskFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        /*launch {
+            val myList = getDataFromBase()
+            println("печатаем в графическом потоке ${myList.first().info}")
 
+        }*/
 
     }
+
+    /*suspend fun getDataFromBase(): List<TaskEntity> {
+        val dbHelper = DbHelper(requireContext())
+        val taskRepo: TaskRepository = TaskRepositoryImpl(dbHelper.writableDatabase)
+        //return taskRepo.getTasksByPage(0, 100)
+        return withContext(Dispatchers.IO) {
+            println("печатаем из IO")
+            taskRepo.getTasksByPage(0, 100)
+        }
+    }*/
 
 }

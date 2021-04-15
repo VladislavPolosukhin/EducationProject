@@ -18,7 +18,7 @@ class MainFragment : BaseFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         val binding: MainFragmentLayoutBinding = DataBindingUtil.inflate(inflater, R.layout.main_fragment_layout,container,false)
         binding.viewModelMF = viewModel

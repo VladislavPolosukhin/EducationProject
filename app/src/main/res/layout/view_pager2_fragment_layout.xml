@@ -5,7 +5,7 @@
 
         <variable
             name="viewPagerVM"
-            type="com.example.education.viewPager.ViewPagerModel" />
+            type="com.example.education.mvvm.ViewPagerViewModel" />
 
     </data>
 
