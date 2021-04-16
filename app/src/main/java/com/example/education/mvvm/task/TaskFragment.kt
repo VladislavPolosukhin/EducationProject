@@ -7,11 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.education.R
-import com.example.education.baseModels.BaseFragment
-import com.example.education.data.TaskEntity
-import com.example.education.database.DbHelper
-import com.example.education.database.TaskRepository
-import com.example.education.database.TaskRepositoryImpl
+import com.example.education.mvvm.BaseFragment
 import com.example.education.databinding.FragmentTaskBinding
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext

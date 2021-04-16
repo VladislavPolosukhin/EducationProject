@@ -1,4 +1,4 @@
-package com.example.education.baseModels
+package com.example.education.mvvm
 
 import androidx.lifecycle.ViewModel
 

@@ -1,4 +1,4 @@
-package com.example.education.extensions
+package com.example.education.utils.extensions
 
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView

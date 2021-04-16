@@ -8,7 +8,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.education.R
 import com.example.education.adapters.ViewPagerAdapter
-import com.example.education.baseModels.BaseFragment
 import com.example.education.databinding.ViewPager2FragmentLayoutBinding
 
 class ViewPagerFragment : BaseFragment() {

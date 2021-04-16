@@ -3,11 +3,12 @@ package com.example.education.db.taskRepository
 import android.content.Context
 import android.os.Build
 import androidx.test.core.app.ApplicationProvider
-import com.example.education.baseModels.App
+import com.example.education.AndroidBaseUnitTest
+import com.example.education.App
 import com.example.education.data.TaskEntity
 import com.example.education.database.DbHelper
-import com.example.education.database.TaskRepository
-import com.example.education.database.TaskRepositoryImpl
+import com.example.education.repository.TaskRepository
+import com.example.education.repository.TaskRepositoryImpl
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before
@@ -17,13 +18,7 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import java.util.*
 
-@RunWith(RobolectricTestRunner::class)
-@Config(
-    application = App::class,
-    manifest = Config.NONE,
-    sdk = [Build.VERSION_CODES.N_MR1]
-)
-class InsertTaskTest {
+class InsertTaskTest : AndroidBaseUnitTest() {
 
     private val task = TaskEntity(
         id = 0,
@@ -36,19 +31,14 @@ class InsertTaskTest {
     )
     private lateinit var taskRepo: TaskRepository
 
-
-    @Before
-    fun before() {
+    override fun beforePreparation() {
         val context: Context = ApplicationProvider.getApplicationContext()
         val dbHelper = DbHelper(context)
         val database = dbHelper.writableDatabase
         taskRepo = TaskRepositoryImpl(database)
     }
 
-    @After
-    fun after() {
-
-    }
+    override fun afterPreparation() {}
 
     @Test
     fun `when insert then return not -1`() {

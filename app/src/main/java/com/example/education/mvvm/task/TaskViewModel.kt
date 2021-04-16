@@ -1,6 +1,6 @@
 package com.example.education.mvvm.task
 
-import com.example.education.baseModels.BaseViewModel
+import com.example.education.mvvm.BaseViewModel
 import com.example.education.adapters.MyRecycler
 
 class TaskViewModel : BaseViewModel() {

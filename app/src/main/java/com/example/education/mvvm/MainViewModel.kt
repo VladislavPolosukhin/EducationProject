@@ -2,9 +2,7 @@ package com.example.education.mvvm
 
 import android.view.View
 import androidx.databinding.ObservableField
-import androidx.lifecycle.MutableLiveData
 import androidx.navigation.findNavController
-import com.example.education.baseModels.BaseViewModel
 import com.example.education.R
 
 class MainViewModel : BaseViewModel() {

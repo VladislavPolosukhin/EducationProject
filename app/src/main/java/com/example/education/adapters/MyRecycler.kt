@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.education.R
-import com.example.education.baseModels.App
+import com.example.education.App
 
 class MyRecycler(
     private val dataList: List<String>

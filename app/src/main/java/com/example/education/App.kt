@@ -1,4 +1,4 @@
-package com.example.education.baseModels
+package com.example.education
 
 import android.app.Application
 import com.example.education.database.DbHelper
