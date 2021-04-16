@@ -6,7 +6,15 @@
 
     <TextView
         android:id="@+id/recyclerTV"
+        android:textSize="30sp"
+        android:textStyle="italic"
+        android:textColor="@color/design_default_color_error"
+        android:textAlignment="center"
+        android:shadowColor="#ff0000"
+        android:shadowDx="2"
+        android:shadowDy="2"
         android:layout_width="match_parent"
+        android:shadowRadius="5"
         android:layout_height="100dp" />
 
 </LinearLayout>

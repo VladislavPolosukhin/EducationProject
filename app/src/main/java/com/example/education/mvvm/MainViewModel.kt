@@ -17,9 +17,8 @@ class MainViewModel : BaseViewModel() {
     var textData = ObservableField("")
 
     fun logIn (view : View){
-        //FIXME правильно ли выполнен переход?
         val navHostController = view.findNavController()
-        navHostController.navigate(R.id.recyclerFragment)
+        navHostController.navigate(R.id.taskFragment)
     }
 
     fun toPager2(view: View){

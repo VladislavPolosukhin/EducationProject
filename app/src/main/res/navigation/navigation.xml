@@ -8,18 +8,18 @@
         android:name="com.example.education.mvvm.MainFragment"
         android:label="MainFragment" >
         <action
-            android:id="@+id/action_mainFragment_to_recyclerFragment"
-            app:destination="@id/recyclerFragment" />
-        <action
             android:id="@+id/action_mainFragment_to_viewPagerFragment"
             app:destination="@id/viewPagerFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_taskFragment"
+            app:destination="@id/taskFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/recyclerFragment"
-        android:name="com.example.education.mvvm.RecyclerFragment"
-        android:label="RecyclerFragment" />
     <fragment
         android:id="@+id/viewPagerFragment"
         android:name="com.example.education.mvvm.ViewPagerFragment"
         android:label="ViewPagerFragment" />
+    <fragment
+        android:id="@+id/taskFragment"
+        android:name="com.example.education.mvvm.task.TaskFragment"
+        android:label="TaskFragment" />
 </navigation>

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import com.example.education.R
 import com.example.education.baseModels.BaseFragment
 import com.example.education.data.TaskEntity
@@ -20,6 +21,7 @@ class TaskFragment : BaseFragment(), CoroutineScope {
     override val coroutineContext: CoroutineContext = Dispatchers.Main
 
     private lateinit var binding: FragmentTaskBinding
+    private val viewModel by lazy { ViewModelProvider(this).get(TaskViewModel::class.java) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,7 +39,8 @@ class TaskFragment : BaseFragment(), CoroutineScope {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding.viewModel = viewModel
+        binding.rvTask.adapter = viewModel.recyclerAdapter
         /*launch {
             val myList = getDataFromBase()
             println("печатаем в графическом потоке ${myList.first().info}")

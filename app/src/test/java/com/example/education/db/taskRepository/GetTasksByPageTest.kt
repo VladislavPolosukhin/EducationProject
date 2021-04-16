@@ -29,11 +29,11 @@ class GetTasksByPageTest {
     private val listTasks = listOf<TaskEntity>(
         TaskEntity
             (
-            0, 1, 0,
+            1, 1, 0,
             "worker", "cool_guy", true, Date()
         ), TaskEntity
             (
-            1, 2, 1,
+            2, 2, 1,
             "deputy_director", "not_a_cool_guy", true, Date()
         )
     )
@@ -54,6 +54,12 @@ class GetTasksByPageTest {
         taskRepository.deleteTaskById((listTasks[1].id))
         val list = taskRepository.getTasksByPage(0, 10)
         Assert.assertNotEquals(listTasks.size,list.size)
+    }
+
+    @Test
+    fun `when insert check objects` (){
+        val list = taskRepository.getTasksByPage(0,100)
+        Assert.assertEquals(listTasks,list)
     }
 
 }
