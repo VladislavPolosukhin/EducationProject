@@ -7,7 +7,7 @@ class SelectCountTask : Query {
 
     override fun getQuery(): String {
         return """|SELECT
-            |COUNT (*)  
+            |COUNT(*)  
             |FROM ${DbTaskConst.TABLE}
             |WHERE ${DbTaskConst.IS_COMPLETED}
             |= ? 

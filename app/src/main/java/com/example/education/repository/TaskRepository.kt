@@ -1,6 +1,7 @@
 package com.example.education.repository
 
 import android.database.sqlite.SQLiteDatabase
+import android.util.Log
 import com.example.education.const.DbTaskConst
 import com.example.education.data.TaskEntity
 import com.example.education.repository.mapper.CursorToTaskEntityMapper
@@ -95,14 +96,19 @@ class TaskRepositoryImpl(
     }
 
     override fun getCount(isCompleted: Boolean): Int {
-        val list : MutableList<TaskEntity> = QueryExecutor.getList(
+       /* val list : MutableList<TaskEntity> = QueryExecutor.getList(
             db,
             SelectCountTask(),
             arrayOf(1.toString()),
            // arrayOf((if (isCompleted) 1 else 0).toString()),
             CursorToTaskEntityMapper
         )
-        return list.size
+        Log.d("MyTag", list.toString())*/
+        return QueryExecutor.getCount(
+            db,
+            SelectCountTask(),
+            arrayOf((if (isCompleted) 1 else 0).toString())
+        )
     }
 
 

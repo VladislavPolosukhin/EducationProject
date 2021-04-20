@@ -34,4 +34,19 @@ object QueryExecutor {
         return item
     }
 
+    fun getCount(
+        db: SQLiteDatabase,
+        sql: Query,
+        selectionArgs: Array<String>?
+    ): Int {
+        var count: Int = 0
+        val cursor = db.rawQuery(sql.getQuery(), selectionArgs).use {
+            if (it.moveToFirst()) {
+                count = it.getInt(0)
+            }
+        }
+
+        return count
+    }
+
 }
