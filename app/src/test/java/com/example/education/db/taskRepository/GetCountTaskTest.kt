@@ -10,7 +10,7 @@ import org.junit.Assert
 import org.junit.Test
 import java.util.*
 
-class  GetByAlarmTaskTest : AndroidBaseUnitTest() {
+class GetCountTaskTest : AndroidBaseUnitTest() {
 
     private val task = TaskEntity(
         id = 1,
@@ -22,8 +22,6 @@ class  GetByAlarmTaskTest : AndroidBaseUnitTest() {
         alarmAt = Date()
     )
 
-    val date = Date()
-
     private lateinit var taskRepository: TaskRepository
 
     override fun beforePreparation() {
@@ -34,10 +32,10 @@ class  GetByAlarmTaskTest : AndroidBaseUnitTest() {
     override fun afterPreparation() {}
 
     @Test
-    fun `when take by date` (){
-        taskRepository.insertTask(task)
-        val taskList = taskRepository.getByAlarm(date)
-        Assert.assertEquals(task, taskList.first())
-    }
 
+    fun `check the quantity of inserted` (){
+        taskRepository.insertTask(task)
+        val quantityCompleted = taskRepository.getCount(true)
+        Assert.assertEquals(1,quantityCompleted)
+    }
 }

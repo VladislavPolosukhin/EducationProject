@@ -4,7 +4,7 @@ import com.example.education.const.DbTaskConst
 import com.example.education.utils.Query
 import com.example.education.utils.extensions.toSqlLike
 
-class SelectTasksByPageSql(private val filter: String = "") : Query {
+class SelectTasksByPageSql(private val filter: String) : Query {
 
     override fun getQuery(): String {
         val whereClause = """|
@@ -13,32 +13,12 @@ class SelectTasksByPageSql(private val filter: String = "") : Query {
         """.trimMargin()
 
 
-            return """|SELECT
+        return """|SELECT
                 |    *
                 |FROM ${DbTaskConst.TABLE}
                 |${if (filter.isNotEmpty()) "WHERE $whereClause" else ""}
                 |LIMIT ? OFFSET ?
              """.trimMargin()
-        }
-
-
-        override fun getQueryThroughId(): String {
-            return """|SELECT
-            |  *  
-            | FROM ${DbTaskConst.TABLE}
-            | WHERE ${DbTaskConst.ID}
-            |  ? 
-            """.trimMargin()
-
-        }
-
-    override fun getQueryThroughDate(): String {
-        return """|SELECT
-            |  *  
-            | FROM ${DbTaskConst.TABLE}
-            | WHERE ${DbTaskConst.ALARM_AT}
-            |  ? 
-            """.trimMargin()
     }
 
 

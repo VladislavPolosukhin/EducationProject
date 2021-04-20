@@ -1,12 +1,13 @@
 package com.example.education.repository
 
-import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import com.example.education.const.DbTaskConst
 import com.example.education.data.TaskEntity
 import com.example.education.repository.mapper.CursorToTaskEntityMapper
-import com.example.education.repository.mapper.CursorToTaskEntityMapper.map
 import com.example.education.repository.mapper.toContentValues
+import com.example.education.repository.query.taskRepo.SelectCountTask
+import com.example.education.repository.query.taskRepo.SelectTaskById
+import com.example.education.repository.query.taskRepo.SelectTasksByAlarms
 import com.example.education.repository.query.taskRepo.SelectTasksByPageSql
 import com.example.education.utils.QueryExecutor
 import java.util.*
@@ -75,33 +76,33 @@ class TaskRepositoryImpl(
     }
 
     override fun getById(id: Long): TaskEntity? {
-        val cursor: Cursor =
-            db.rawQuery(SelectTasksByPageSql().getQueryThroughId(), arrayOf(id.toString()))
-        return map(cursor)
+        return QueryExecutor.getItem(
+            db = db,
+            sql = SelectTaskById(),
+            selectionArgs = arrayOf(id.toString()),
+            cursorToDataMapper = CursorToTaskEntityMapper
+        )
 
     }
 
     override fun getByAlarm(date: Date): List<TaskEntity> {
-        /*return QueryExecutor.getList(
+        return QueryExecutor.getList(
             db,
-            SelectTasksByPageSql(""),
-            arrayOf(date.toString()),
+            SelectTasksByAlarms(),
+            arrayOf(date.time.toString()),
             CursorToTaskEntityMapper
-        )*/
-        val listTasks = mutableListOf<TaskEntity>()
-        db.rawQuery(SelectTasksByPageSql().getQueryThroughDate(), arrayOf(date.toString()))
-            .use {
-                while (it.moveToNext()) {
-                    listTasks.add(map(it))
-                }
-                it.close()
-            }
-
-        return listTasks
+        )
     }
 
     override fun getCount(isCompleted: Boolean): Int {
-        TODO("Not yet implemented")
+        val list : MutableList<TaskEntity> = QueryExecutor.getList(
+            db,
+            SelectCountTask(),
+            arrayOf(1.toString()),
+           // arrayOf((if (isCompleted) 1 else 0).toString()),
+            CursorToTaskEntityMapper
+        )
+        return list.size
     }
 
 
