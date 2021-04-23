@@ -11,6 +11,7 @@ class App : Application() {
     // TODO перенести тесты на Koin
     // TODO создать второй адаптер ProgressTaskEntityAdapter (на примере CompletedTaskEntityAdapter)
     // TODO Из ViewPagerAdapter передавать в bundle значение для Completed и Progress
+    // TODO Дорисовать адаптер рекуклера)
 
     override fun onCreate() {
         super.onCreate()
