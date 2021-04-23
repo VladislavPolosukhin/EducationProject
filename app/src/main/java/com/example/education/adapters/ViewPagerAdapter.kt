@@ -15,8 +15,8 @@ class ViewPagerAdapter(
 ) : FragmentStateAdapter(fm, lifecycle) {
 
     private val pages = listOf(
-        TaskFragment(),
-        TaskFragment()
+        TaskFragment(), // FIXME Progress
+        TaskFragment() // FIXME Completed
     )
 
     override fun getItemCount(): Int = 2

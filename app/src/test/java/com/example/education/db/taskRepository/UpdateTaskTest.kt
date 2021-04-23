@@ -1,13 +1,11 @@
 package com.example.education.db.taskRepository
 
-import androidx.test.core.app.ApplicationProvider
 import com.example.education.AndroidBaseUnitTest
 import com.example.education.data.TaskEntity
-import com.example.education.database.DbHelper
 import com.example.education.repository.TaskRepository
-import com.example.education.repository.TaskRepositoryImpl
 import org.junit.Assert
 import org.junit.Test
+import org.koin.test.inject
 import java.util.*
 
 class UpdateTaskTest : AndroidBaseUnitTest() {
@@ -22,14 +20,10 @@ class UpdateTaskTest : AndroidBaseUnitTest() {
         alarmAt = Date()
     )
 
-    override fun beforePreparation() {
-        val dbHelper = DbHelper(ApplicationProvider.getApplicationContext())
-        taskRepository = TaskRepositoryImpl(dbHelper.writableDatabase)
-    }
+    private val taskRepository: TaskRepository by inject()
 
+    override fun beforePreparation() {}
     override fun afterPreparation() {}
-
-    private lateinit var taskRepository: TaskRepository
 
     @Test
     fun `when db empty then return 0`() {

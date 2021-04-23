@@ -13,6 +13,7 @@ import com.example.education.databinding.ViewPager2FragmentLayoutBinding
 class ViewPagerFragment : BaseFragment() {
 
     private val pagerAdapter by lazy { ViewPagerAdapter(childFragmentManager, lifecycle) }
+
     private val viewModel: ViewPagerViewModel by lazy {
         ViewModelProvider(this).get(ViewPagerViewModel::class.java)
     }

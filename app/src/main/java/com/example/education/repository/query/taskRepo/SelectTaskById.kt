@@ -9,8 +9,7 @@ class SelectTaskById : Query {
         return """|SELECT
             |*  
             |FROM ${DbTaskConst.TABLE}
-            |WHERE ${DbTaskConst.ID}
-            |= ? 
+            |WHERE ${DbTaskConst.ID} = ?
             """.trimMargin()
     }
 }

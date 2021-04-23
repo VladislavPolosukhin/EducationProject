@@ -7,10 +7,9 @@ class SelectTasksByAlarms : Query {
 
     override fun getQuery(): String {
         return """|SELECT
-            |*  
+            |   *
             |FROM ${DbTaskConst.TABLE}
-            |WHERE ${DbTaskConst.ALARM_AT}
-            |= ? 
+            |WHERE ${DbTaskConst.ALARM_AT} = ?
             """.trimMargin()
     }
 }

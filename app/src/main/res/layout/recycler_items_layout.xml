@@ -1,20 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="100dp"
-    android:orientation="vertical">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/recyclerTV"
-        android:textSize="30sp"
-        android:textStyle="italic"
-        android:textColor="@color/design_default_color_error"
-        android:textAlignment="center"
-        android:shadowColor="#ff0000"
-        android:shadowDx="2"
-        android:shadowDy="2"
+    <data>
+
+        <variable
+            name="task"
+            type="com.example.education.data.TaskEntity" />
+
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:shadowRadius="5"
-        android:layout_height="100dp" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/rv_task_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:shadowColor="#ff0000"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="5"
+            android:text="@{task.title}"
+            android:textAlignment="center"
+            android:textColor="@color/design_default_color_error"
+            android:textSize="30sp"
+            android:textStyle="italic"
+            tools:text="Название" />
+
+        <TextView
+            android:id="@+id/rv_task_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:shadowColor="#00ff00"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="5"
+            android:text="@{task.info}"
+            android:textAlignment="center"
+            android:textColor="@color/design_default_color_error"
+            android:textSize="30sp"
+            android:textStyle="italic"
+            tools:text="Инфо" />
+
+    </LinearLayout>
+
+</layout>

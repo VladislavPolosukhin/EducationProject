@@ -9,8 +9,7 @@ class SelectCountTask : Query {
         return """|SELECT
             |COUNT(*)  
             |FROM ${DbTaskConst.TABLE}
-            |WHERE ${DbTaskConst.IS_COMPLETED}
-            |= ? 
+            |WHERE ${DbTaskConst.IS_COMPLETED} = ?
             """.trimMargin()
     }
 }
