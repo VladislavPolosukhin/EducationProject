@@ -1,1 +1,1 @@
-1. Почему мы нигде не закрываем курсор, например CursorToTaskEntityMappe
+1. Почему private val adapterCompleted: RecyclerView.Adapter<RecyclerView.ViewHolder> = CompletedTaskEntityAdapter() не работает

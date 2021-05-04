@@ -9,29 +9,43 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.koin.core.component.inject
+import java.util.*
 
 class TaskViewModel : BaseViewModel() {
 
     val loading = MutableLiveData<Boolean>()
     val updateContent = MutableLiveData<List<TaskEntity>>()
+    var isCompleted: Boolean = false
 
     private val taskRepo: TaskRepository by inject()
 
-    fun loadTasks() {
+    fun loadTasks(isCompleted: Boolean) {
+        this.isCompleted = isCompleted
         viewModelScope.launch {
             loading.postValue(true)
-
             val tasksFromDb = withContext(Dispatchers.IO) {
-                taskRepo.getTasksByPage(
-                    fromPosition = 0,
-                    count = Int.MAX_VALUE,
-                    filter = ""
-                )
+                taskRepo.getByBoolean(isCompleted)
             }
-
             updateContent.postValue(tasksFromDb)
             loading.postValue(false)
         }
     }
 
+    fun addTask() {
+        viewModelScope.launch {
+            val taskEntity = TaskEntity(
+                id = 1,
+                positionWork = 1,
+                positionCompleted = 0,
+                title = "worker",
+                info = "cool guy",
+                isCompleted = false,
+                alarmAt = Date()
+            )
+            withContext(Dispatchers.IO) {
+                taskRepo.insertTask(taskEntity)
+            }
+            loadTasks(isCompleted)
+        }
+    }
 }

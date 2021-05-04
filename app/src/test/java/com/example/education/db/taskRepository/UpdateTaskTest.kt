@@ -20,7 +20,7 @@ class UpdateTaskTest : AndroidBaseUnitTest() {
         alarmAt = Date()
     )
 
-    private val taskRepository: TaskRepository by inject()
+   // private val taskRepository: TaskRepository by inject()
 
     override fun beforePreparation() {}
     override fun afterPreparation() {}

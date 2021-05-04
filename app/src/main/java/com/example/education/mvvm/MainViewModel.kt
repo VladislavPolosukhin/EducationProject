@@ -1,4 +1,4 @@
-package com.example.education.mvvm
+ package com.example.education.mvvm
 
 import android.view.View
 import androidx.databinding.ObservableField

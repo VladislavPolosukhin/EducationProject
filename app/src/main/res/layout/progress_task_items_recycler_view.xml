@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="task"
+            type="com.example.education.data.TaskEntity" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:shadowColor="#FFEB3B"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="5"
+            android:text="@{task.positionWork}"
+            android:textAlignment="center"
+            android:textColor="#FF9800"
+            android:textSize="30sp"
+            android:textStyle="italic"
+            tools:text="Ранк" />
+
+        <TextView
+            android:id="@+id/rv_task_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:shadowColor="#ff0000"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="5"
+            android:text="@{task.title}"
+            android:textAlignment="center"
+            android:textColor="@color/design_default_color_error"
+            android:textSize="30sp"
+            android:textStyle="italic"
+            tools:text="Название" />
+
+        <TextView
+            android:id="@+id/rv_task_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:shadowColor="#00ff00"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="5"
+            android:text="@{task.info}"
+            android:textAlignment="center"
+            android:textColor="@color/design_default_color_error"
+            android:textSize="30sp"
+            android:textStyle="italic"
+            tools:text="Инфо" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:shadowColor="#00E1FF"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="5"
+            android:text="@{task.alarmAt.toString()}"
+            android:textAlignment="center"
+            android:textColor="@color/purple_500"
+            android:textSize="30sp"
+            android:textStyle="italic"
+            tools:text="Дата" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="@{task.completed}"/>
+
+
+
+
+    </LinearLayout>
+
+
+</layout>

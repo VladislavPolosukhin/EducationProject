@@ -1,11 +1,12 @@
 package com.example.education
 
 import android.os.Build
-import com.example.education.data.TaskEntity
+import com.example.education.repository.TaskRepository
 import org.junit.After
 import org.junit.Before
 import org.junit.runner.RunWith
 import org.koin.test.AutoCloseKoinTest
+import org.koin.test.inject
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 
@@ -17,6 +18,8 @@ import org.robolectric.annotation.Config
     sdk = [Build.VERSION_CODES.O_MR1]
 )
 abstract class AndroidBaseUnitTest : AutoCloseKoinTest() {
+
+    val taskRepository: TaskRepository by inject()
 
     @Before
     fun before() {

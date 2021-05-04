@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.education.R
 import com.example.education.adapters.ViewPagerAdapter
 import com.example.education.databinding.ViewPager2FragmentLayoutBinding
+import com.example.education.mvvm.task.TaskFragment
 
 class ViewPagerFragment : BaseFragment() {
 
@@ -30,8 +31,17 @@ class ViewPagerFragment : BaseFragment() {
             false
         )
 
+
         binding.viewPager2.adapter = pagerAdapter
+        pagerAdapter.setBundles(setBundles())
 
         return binding.root
+    }
+
+    private fun setBundles(): List<Bundle> {
+        return listOf(
+            Bundle().also { it.putBoolean(TaskFragment.key, true) },
+            Bundle().also { it.putBoolean(TaskFragment.key, false) }
+        )
     }
 }

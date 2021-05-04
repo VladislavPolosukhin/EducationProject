@@ -1,5 +1,6 @@
 package com.example.education.adapters
 
+import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -14,27 +15,24 @@ class ViewPagerAdapter(
     lifecycle: Lifecycle
 ) : FragmentStateAdapter(fm, lifecycle) {
 
+    private var bundleTrue: Bundle = Bundle()
+    private var bundleFalse: Bundle = Bundle()
+
+    fun setBundles(list: List<Bundle>){
+        bundleTrue = list[0]
+        bundleFalse = list[1]
+    }
+
     private val pages = listOf(
         TaskFragment(), // FIXME Progress
         TaskFragment() // FIXME Completed
     )
 
     override fun getItemCount(): Int = 2
-    override fun createFragment(position: Int): Fragment = pages[position]
+
+    override fun createFragment(position: Int): Fragment = pages[position].apply {
+        if (position == 1) arguments = bundleTrue else bundleFalse
+    }
 
 
-    /*override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PagerVH =
-        PagerVH(
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.view_pager2_items_layout, parent, false)
-        )
-
-    override fun getItemCount(): Int = colors.size
-
-    override fun onBindViewHolder(holder: PagerVH, position: Int) = holder.itemView.run {
-        tvTitle.text = "item $position"
-        container.setBackgroundResource(colors[position])
-    }*/
 }
-
-class PagerVH(itemView: View) : RecyclerView.ViewHolder(itemView)

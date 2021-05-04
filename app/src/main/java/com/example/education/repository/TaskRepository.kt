@@ -1,15 +1,11 @@
 package com.example.education.repository
 
 import android.database.sqlite.SQLiteDatabase
-import android.util.Log
 import com.example.education.const.DbTaskConst
 import com.example.education.data.TaskEntity
 import com.example.education.repository.mapper.CursorToTaskEntityMapper
 import com.example.education.repository.mapper.toContentValues
-import com.example.education.repository.query.taskRepo.SelectCountTask
-import com.example.education.repository.query.taskRepo.SelectTaskById
-import com.example.education.repository.query.taskRepo.SelectTasksByAlarms
-import com.example.education.repository.query.taskRepo.SelectTasksByPageSql
+import com.example.education.repository.query.taskRepo.*
 import com.example.education.utils.QueryExecutor
 import java.util.*
 
@@ -27,14 +23,17 @@ interface TaskRepository {
     // Tested
     fun updateTask(task: TaskEntity): Int
 
+    // Tested
     fun getById(id: Long): TaskEntity?
-    // TODO добавить getById(id: Long): TaskEntity?
 
+    // Tested
     fun getByAlarm(date: Date): List<TaskEntity>
-    // TODO добавить getByAlarm(date: Date()): List<TaskEntity>
 
+    // Tested
     fun getCount(isCompleted: Boolean): Int
-    // TODO добавить getCount(isCompleted: Boolean): Int
+
+    // Tested
+    fun getByBoolean(isCompleted: Boolean): List<TaskEntity>
 
 }
 
@@ -96,18 +95,19 @@ class TaskRepositoryImpl(
     }
 
     override fun getCount(isCompleted: Boolean): Int {
-       /* val list : MutableList<TaskEntity> = QueryExecutor.getList(
-            db,
-            SelectCountTask(),
-            arrayOf(1.toString()),
-           // arrayOf((if (isCompleted) 1 else 0).toString()),
-            CursorToTaskEntityMapper
-        )
-        Log.d("MyTag", list.toString())*/
         return QueryExecutor.getCount(
             db,
             SelectCountTask(),
             arrayOf((if (isCompleted) 1 else 0).toString())
+        )
+    }
+
+    override fun getByBoolean(isCompleted: Boolean): List<TaskEntity> {
+        return QueryExecutor.getList(
+            db,
+            SelectTaskByCoompleted(),
+            arrayOf((if (isCompleted) 1 else 0).toString()),
+            CursorToTaskEntityMapper
         )
     }
 

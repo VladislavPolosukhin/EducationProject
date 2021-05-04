@@ -22,12 +22,9 @@ class GetTasksByPageTest : AndroidBaseUnitTest() {
         alarmAt = Date()
     )
 
-    private lateinit var taskRepository: TaskRepository
 
-    override fun beforePreparation() {
-        val dbHelper = DbHelper(ApplicationProvider.getApplicationContext())
-        taskRepository = TaskRepositoryImpl(dbHelper.writableDatabase)
-    }
+
+    override fun beforePreparation() { }
 
     override fun afterPreparation() {}
 
