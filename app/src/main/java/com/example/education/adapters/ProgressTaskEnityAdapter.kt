@@ -25,10 +25,9 @@ class ProgressTaskEntity :  AbstrStatusTaskEntity() {
         holder.binding?.task = taskList[position]
     }
 
-
-
     override fun getItemCount() = taskList.size
 
+    //
     override fun onItemMove(fromPosition: Int, toPosition: Int): Boolean {
         if (fromPosition < toPosition) {
             for (i in fromPosition until toPosition) {
@@ -42,7 +41,6 @@ class ProgressTaskEntity :  AbstrStatusTaskEntity() {
         notifyItemMoved(fromPosition, toPosition)
         return true
     }
-
 
     override fun updateData(list: List<TaskEntity>) {
         taskList.clear()

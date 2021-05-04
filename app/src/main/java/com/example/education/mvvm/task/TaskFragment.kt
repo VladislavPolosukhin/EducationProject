@@ -9,10 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.example.education.R
-import com.example.education.adapters.AbstrStatusTaskEntity
-import com.example.education.adapters.CompletedTaskEntit
-import com.example.education.adapters.ProgressTaskEntity
-import com.example.education.adapters.SimpleItemTouchHelperCallback
+import com.example.education.adapters.*
 import com.example.education.databinding.FragmentTaskBinding
 import com.example.education.mvvm.BaseFragment
 import kotlinx.coroutines.CoroutineScope
@@ -21,21 +18,25 @@ import kotlin.coroutines.CoroutineContext
 
 class TaskFragment : BaseFragment(), CoroutineScope {
 
-    companion object{
-        const val key = "KEY"
+    companion object {
+        const val IS_COMPLETED_ARG = "IS_COMPLETED_ARG"
     }
 
     override val coroutineContext: CoroutineContext = Dispatchers.Main
     private lateinit var binding: FragmentTaskBinding
     private val viewModel by lazy { ViewModelProvider(this).get(TaskViewModel::class.java) }
-    private lateinit var  adapterCompleted: AbstrStatusTaskEntity
+
+    //private lateinit var adapterCompleted: AbstrStatusTaskEntity
+    private val adapterCompleted: CompletedTaskPagedAdapter by lazy {
+        CompletedTaskPagedAdapter(TaskAdapterDiffUtilCallback())
+    }
     private var isCompleted = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val bundle = this.arguments
-         isCompleted = bundle?.get(key) as Boolean
+        isCompleted = bundle?.getBoolean(IS_COMPLETED_ARG) ?: false
     }
 
     override fun onCreateView(
@@ -56,10 +57,14 @@ class TaskFragment : BaseFragment(), CoroutineScope {
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
 
-        if (isCompleted) adapterCompleted = CompletedTaskEntit() else ProgressTaskEntity()
-        val callback = SimpleItemTouchHelperCallback(adapterCompleted)
-        val touchHelper = ItemTouchHelper(callback)
-        touchHelper.attachToRecyclerView(binding.rvTask)
+        if (isCompleted) {
+            //adapterCompleted = CompletedTaskAdapter()
+        } else {
+            ProgressTaskEntity()
+        }
+        //val callback = SimpleItemTouchHelperCallback(adapterCompleted)
+        //val touchHelper = ItemTouchHelper(callback)
+        //touchHelper.attachToRecyclerView(binding.rvTask)
 
         binding.rvTask.adapter = adapterCompleted
         viewModel.loadTasks(isCompleted)
@@ -67,8 +72,11 @@ class TaskFragment : BaseFragment(), CoroutineScope {
     }
 
     private fun observeLiveData() {
-        viewModel.updateContent.observe(viewLifecycleOwner) { taskList ->
-             adapterCompleted.updateData(taskList)
+        /*viewModel.updateContent.observe(viewLifecycleOwner) { taskList ->
+            adapterCompleted.updateData(taskList)
+        }*/
+        viewModel.pagedList.observe(viewLifecycleOwner) { taskEntityPagedList ->
+            adapterCompleted.submitList(taskEntityPagedList)
         }
         viewModel.loading.observe(viewLifecycleOwner) { isLoading ->
             Toast.makeText(

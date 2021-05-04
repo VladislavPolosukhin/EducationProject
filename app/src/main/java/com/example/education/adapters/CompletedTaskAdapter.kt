@@ -9,7 +9,7 @@ import com.example.education.data.TaskEntity
 import com.example.education.databinding.RecyclerItemsLayoutBinding
 import java.util.*
 
-class CompletedTaskEntit :  AbstrStatusTaskEntity() {
+class CompletedTaskAdapter : AbstrStatusTaskEntity() {
 
     private val taskList: MutableList<TaskEntity> = mutableListOf()
 

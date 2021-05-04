@@ -8,6 +8,9 @@ import org.koin.core.context.startKoin
 
 class App : Application() {
 
+    // TODO создать UseCase для изменения позиций item-ов после их перетаскивания в рекуклере (в методе onMove)
+    // TODO создать другой рекуклер с paging Library для InProgress
+    // TODO переименовать ..AbstrStatusTaskEntity и переделать его под PagedAdapter
 
     override fun onCreate() {
         super.onCreate()

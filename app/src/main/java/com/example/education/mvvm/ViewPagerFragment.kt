@@ -40,8 +40,8 @@ class ViewPagerFragment : BaseFragment() {
 
     private fun setBundles(): List<Bundle> {
         return listOf(
-            Bundle().also { it.putBoolean(TaskFragment.key, true) },
-            Bundle().also { it.putBoolean(TaskFragment.key, false) }
+            Bundle().also { it.putBoolean(TaskFragment.IS_COMPLETED_ARG, true) },
+            Bundle().also { it.putBoolean(TaskFragment.IS_COMPLETED_ARG, false) }
         )
     }
 }
