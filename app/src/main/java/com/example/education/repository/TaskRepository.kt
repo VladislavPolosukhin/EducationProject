@@ -35,6 +35,12 @@ interface TaskRepository {
     // Tested
     fun getByBoolean(isCompleted: Boolean): List<TaskEntity>
 
+    fun getTasksByCompletedAndByPages(
+        fromPosition: Int,
+        count: Int,
+        isCompleted: Boolean
+    ): List<TaskEntity>
+
 }
 
 class TaskRepositoryImpl(
@@ -107,6 +113,19 @@ class TaskRepositoryImpl(
             db,
             SelectTaskByCoompleted(),
             arrayOf((if (isCompleted) 1 else 0).toString()),
+            CursorToTaskEntityMapper
+        )
+    }
+
+    override fun getTasksByCompletedAndByPages(
+        fromPosition: Int,
+        count: Int,
+        isCompleted: Boolean
+    ): List<TaskEntity> {
+        return QueryExecutor.getList(
+            db,
+            SelectTasksByCompletedAndByPages(),
+            arrayOf((if (isCompleted) 1 else 0).toString(), "$fromPosition", "$count"),
             CursorToTaskEntityMapper
         )
     }

@@ -14,6 +14,7 @@ import com.example.education.databinding.FragmentTaskBinding
 import com.example.education.mvvm.BaseFragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlin.coroutines.CoroutineContext
 
 class TaskFragment : BaseFragment(), CoroutineScope {
@@ -26,10 +27,9 @@ class TaskFragment : BaseFragment(), CoroutineScope {
     private lateinit var binding: FragmentTaskBinding
     private val viewModel by lazy { ViewModelProvider(this).get(TaskViewModel::class.java) }
 
+
     //private lateinit var adapterCompleted: AbstrStatusTaskEntity
-    private val adapterCompleted: CompletedTaskPagedAdapter by lazy {
-        CompletedTaskPagedAdapter(TaskAdapterDiffUtilCallback())
-    }
+    private lateinit var adapterCompleted: AbstractAdapterStatusTaskEntity
     private var isCompleted = false
 
 
@@ -58,13 +58,13 @@ class TaskFragment : BaseFragment(), CoroutineScope {
         binding.viewModel = viewModel
 
         if (isCompleted) {
-            //adapterCompleted = CompletedTaskAdapter()
+            adapterCompleted = CompletedTaskPagedAdapter(TaskAdapterDiffUtilCallback())
         } else {
-            ProgressTaskEntity()
+            ProgressTaskAdapter(TaskAdapterDiffUtilCallback())
         }
-        //val callback = SimpleItemTouchHelperCallback(adapterCompleted)
-        //val touchHelper = ItemTouchHelper(callback)
-        //touchHelper.attachToRecyclerView(binding.rvTask)
+        val callback = SimpleItemTouchHelperCallback(adapterCompleted)
+        val touchHelper = ItemTouchHelper(callback)
+        touchHelper.attachToRecyclerView(binding.rvTask)
 
         binding.rvTask.adapter = adapterCompleted
         viewModel.loadTasks(isCompleted)
@@ -72,9 +72,7 @@ class TaskFragment : BaseFragment(), CoroutineScope {
     }
 
     private fun observeLiveData() {
-        /*viewModel.updateContent.observe(viewLifecycleOwner) { taskList ->
-            adapterCompleted.updateData(taskList)
-        }*/
+
         viewModel.pagedList.observe(viewLifecycleOwner) { taskEntityPagedList ->
             adapterCompleted.submitList(taskEntityPagedList)
         }
