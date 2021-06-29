@@ -3,7 +3,7 @@ package com.example.education.adapters
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
-class SimpleItemTouchHelperCallback (val itemTouchHelperAdapter: ItemTouchHelperAdapter): ItemTouchHelper.Callback() {
+class SimpleItemTouchHelperCallback (private val itemTouchHelperAdapter: ItemTouchHelperAdapter): ItemTouchHelper.Callback() {
 
     override fun getMovementFlags(
         recyclerView: RecyclerView,

@@ -7,19 +7,19 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.education.data.TaskEntity
+import com.example.education.databinding.ProgressTaskItemsRecyclerViewBinding
 import com.example.education.databinding.RecyclerItemsLayoutBinding
 
-class CompletedTaskPagedAdapter(
-    diffCallback: DiffUtil.ItemCallback<TaskEntity>
-) : AbstractAdapterStatusTaskEntity(diffCallback) {
+class ProgressTaskAdapter(diffCallBack: DiffUtil.ItemCallback<TaskEntity>) :
+    AbstractAdapterStatusTaskEntity(diffCallBack) {
 
     inner class MyHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val binding = DataBindingUtil.bind<RecyclerItemsLayoutBinding>(itemView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
-        val inflater: LayoutInflater = LayoutInflater.from(parent.context)
-        val binding = RecyclerItemsLayoutBinding.inflate(inflater, parent, false)
+        val inflater = LayoutInflater.from(parent.context)
+        val binding = ProgressTaskItemsRecyclerViewBinding.inflate(inflater, parent, false)
         return MyHolder(binding.root)
     }
 
